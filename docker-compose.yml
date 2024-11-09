@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  minio:
+    container_name: minio
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password
+    volumes:
+      - ~/minio/data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      custom-network:
+        ipv4_address: 172.20.0.1
+
+
+  vscode:
+    build:
+      context: ./vscode
+    container_name: vscode
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mlflow
+    volumes:
+      - ./notebooks:/coder/huseyn/work
+    environment:
+      PASSWORD: "password"
+    command: >
+      code-server --bind-addr 0.0.0.0:8080 --auth password
+    networks:
+      custom-network:
+        ipv4_address: 172.20.0.2

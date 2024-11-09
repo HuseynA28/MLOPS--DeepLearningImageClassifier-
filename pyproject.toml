@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "mlops-deeplearningimageclassifier"
+version = "0.1.0"
+description = ""
+authors = ["HuseynA28 <abdulla.huseyn@yahoo.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
