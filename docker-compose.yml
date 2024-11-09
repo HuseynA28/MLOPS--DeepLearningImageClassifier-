@@ -16,7 +16,6 @@ services:
       custom-network:
         ipv4_address: 172.20.0.1
 
-
   vscode:
     build:
       context: ./vscode
